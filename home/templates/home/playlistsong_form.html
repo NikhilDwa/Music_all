@@ -1,0 +1,61 @@
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Form</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'home/bootstrap/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'home/css/selectstyle.css' %}">
+		<link href="{% static 'home/selectstyle.css' %}" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{% static 'home/in.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'home/songsstyle.css' %}">
+    </head>
+
+    <body>
+    <nav class="navbar ss">
+  			<div class="container-fluid">
+    			<div class="navbar-header">
+      				<div class="navbar-brands">M U S I C _ A L L
+					</div>
+    			</div>
+				<ul class="nav navbar-nav navbar-right">
+      				<li><a href="{% url 'addplaylist' %}"><font color="black" size="4px">
+						<span class="glyphicon glyphicon-music"></span> Playlist</font></a>
+					</li>
+					<li><a href="{% url 'logout' %}?next=/login"><font color="black" size="4px">
+						<span class="glyphicon glyphicon-log-out"></span> Logout</font></a>
+					</li>
+    			</ul>
+  			</div>
+			<div class="head">
+			<div class="row">
+				<div class="col-lg-12">
+					<h3>ADD SONGS</h3>
+				</div>
+			</div>
+		</div>
+		</nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-7 col-md-offset-3">
+                    <br><br><br>
+                    <div class="jumbotron">
+                        <div class="panel-body">
+                            <form class="form-horizontal" action="{% url 'playlistsong-add' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {% include 'home/form-template.html' %}
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-success" value="Save">Submit</button>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="footer"><br>&copy; Website Name. All rights Reserved 2018<br><br></div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    	<script src="{% static 'home/bootstrap/js/bootstrap.min.js' %}"></script>
+    </body>
+</html>

@@ -1,0 +1,140 @@
+{% load static %}
+<html lang="en">
+    <head>
+        <title>Music_All</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">-->
+        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'home/musicPlayer.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'home/in.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'home/songsstyle.css' %}">
+        <link rel="stylesheet" href="{% static 'home/bootstrap/css/bootstrap.min.css' %}">
+        <style>
+        .para{
+            text-align: center;
+            font-size: 15px;
+            float:left;
+            margin:7px;
+            font-weight:bold;
+        }
+        .sanoImage{
+            width:40px;
+            height:40px;
+            float:left;
+            margin:7px;
+        }
+        .bttnn{
+            background-color: white;
+            border: 1px solid rgba(54, 48, 48, 0.5);
+            width:100%;
+        }
+        </style>
+    </head>
+
+    <body onload = "playPause();">
+    <nav class="navbar ss">
+  			<div class="container-fluid">
+    			<div class="navbar-header">
+      				<div class="navbar-brands">M U S I C _ A L L
+					</div>
+    			</div>
+				<ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'select' %}"><font color="black" size="4px">
+						<span class="glyphicon glyphicon-cd"></span> Artist</font></a>
+					</li>
+      				<li><a href="{% url 'addplaylist' %}"><font color="black" size="4px">
+						<span class="glyphicon glyphicon-music"></span> Playlist</font></a>
+					</li>
+					<li><a href="{% url 'logout' %}?next=/login"><font color="black" size="4px">
+						<span class="glyphicon glyphicon-log-out"></span> Logout</font></a>
+					</li>
+    			</ul>
+  			</div>
+		</nav>
+
+        <div style="width:40%;height:430px;padding:10px;margin:45px 20px 20px 20px;border: 1px solid rgba(54, 48, 48, 0.5);float:left;">
+        <div style="z-index:10;background-image: url('{% static 'home/blur.jpg' %}');height:50%;width:100%; "></div>
+        <div style="height:180px;width:180px;z-index:105;margin:-50px 50px 50px 25px;float:left; "><img src="{{ play.song_image.url }}" width="180px" height="180px"> </div>
+        <div style="width:200px;height:50%;float:left;">
+            <h3 style="margin-left: -55%;">{{ play.song_name }}</h3>
+            <h5 style="margin-top: -3%;">By {{ play.artist_id.artist_name }}</h5>
+            <h4>{{ play.album_id.album_name }}</h4>
+            <h6>{{ play.release_date }}</h6>
+
+
+        </div>
+
+
+        </div>
+    <div style="margin:10px 10px -20px 46%;"><h2>Similar user also listen to</h2></div>
+        <div style="width:24%;height:430px;padding:10px;margin:20px 20px 20px 3%;border: 1px solid rgba(54, 48, 48, 0.5);float:left;overflow-y: scroll;">
+        {% for Song in recc %}
+            <form action="#" method="post">
+            {% csrf_token %}
+        	    <div>
+            	    <button class="bttnn">
+                	    <span style="display:none;"><input type=" submit " name="choose" value="{{ Song.song_id }}"></span>
+                        <img src="{{ Song.song_image.url }}" class="sanoImage">
+                            <p class="para">{{ Song.song_name }}
+                                <br><i style="font-size: 10px;margin-left: -20px;">{{ Song.artist_id.artist_name }}</i>
+                            </p>
+                    </button>
+        		</div>
+            </form>
+        {% endfor %}
+        </div>
+<div style="margin:-3.8% 25px -30px 74%"><h2>Songs that are similar</h2></div>
+        <div style="width:24%;height:430px;padding:10px;margin:20px 20px 20px 3%;border: 1px solid rgba(54, 48, 48, 0.5);float:left;overflow-y: scroll;">
+        {% for Song in it %}
+            <form action="#" method="post">
+            {% csrf_token %}
+        	    <div>
+            	    <button class="bttnn">
+                	    <span style="display:none;"><input type=" submit " name="choose" value="{{ Song.song_id }}"></span>
+                        <img src="{{ Song.song_image.url }}" class="sanoImage">
+                        <p class="para">{{ Song.song_name }}
+                            <br><i style="font-size: 10px;margin-left: -20px;">{{ Song.artist_id.artist_name }}</i>
+                        </p>
+                    </button>
+        		</div>
+            </form>
+        {% endfor %}
+
+        <div class="musicPlayer" style="height:100px;position:fixed;bottom:0;left:0;right:0;z-index:100;">
+            <div style='background:url("{% static 'home/playerBackground.jpg' %}");margin:auto;opacity:0.92;border-top:1px solid rgba(255,0,0,0);'>
+                <div style="background-color: rgba(0,0,0,0.8);"> <br>
+                    <div style='float:left;width:25%;overflow:hidden;'>
+                        <marquee>
+                        <b id='songPlayin' style='text-align:center;color: #a6a6a6' >{{ play.song_name }}</b>
+                        </marquee>
+                    </div>
+                    <div style='margin-left:43%;float:clear;'>
+                        <button onclick='bwdCurTime()' style='height:30px;' class='bttn'><b><<</b></button>
+                        <button id='play' onclick="playPause()" style='font-size:10px;margin-top:-17px;width:50px;height:50px;' class='bttn'>Play</button>
+                        <button onclick='fwdCurTime()' style='height:30px;' class='bttn'><b>>></b></button></div>
+                        <button onclick='fiveVol()' style='float:right;margin-right:10%'  class='volm' id='vol1'></button>
+                        <button onclick='fourVol()' style='float:right;margin-right:0.5%'  class='volm' id='vol2'></button>
+                        <button onclick='threeVol()' style='float:right;margin-right:0.5%'  class='volm' id='vol3'></button>
+                        <button onclick='twoVol()' style='float:right;margin-right:0.5%'  class='volm' id='vol4'></button>
+                        <button onclick='oneVol()' style='float:right;margin-right:0.5%'  class='volm'  id='vol5'></button>
+                        <button onclick='setHalfVol()' style='float:right;margin-right:2%;'  class='bttn'>Vol</button>
+                        <br><br>
+                        <b><i id='dura' style='color:white ;float:right;font-size:15px;margin-left:1%;margin-right:20%;margin-top:-0.8%;'></i></b>
+                        <div id='defaultbar' style='background-color:white;height:3px;width:48.35%;margin-left:25%;cursor:pointer;float:clear;'>
+                            <div id='pgb' style='background-color:red;height:3px;width:0px;padding:1px;cursor:pointer;'></div>
+                        </div>
+                        <br><br>
+                    </div>
+                </div>
+                <audio id ='audio1'>
+                    <source id='srrrc' src="..{{ play.song_file.url }}" type='audio/mpeg'>
+                    Your Browser doesn't support the audio element.
+                </audio>
+            <script src="{% static 'home/musicPlayer.js' %}"></script>
+        </div>
+    </body>
+</html>

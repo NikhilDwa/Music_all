@@ -1,0 +1,14 @@
+.na {
+  float: left;
+  height: 50px;
+  padding: 20px 15px;
+  font-size: 35px;
+  line-height: 20px;
+  color: white;
+}
+
+.navbar-inverse .navbar-text {
+  color: white;
+  font-size: 20px;
+  padding-top: 2px;
+}

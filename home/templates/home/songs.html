@@ -1,0 +1,66 @@
+{% load static %}
+<html lang="en">
+    <head>
+        <title>Songs</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'home/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'home/songsstyle.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'home/in.css' %}">
+    </head>
+
+    <body>
+		<nav class="navbar ss">
+  			<div class="container-fluid">
+    			<div class="navbar-header">
+      				<div class="navbar-brands">M U S I C _ A L L
+					</div>
+    			</div>
+				<ul class="nav navbar-nav navbar-right">
+      				<li><a href="{% url 'addplaylist' %}"><font color="black" size="4px">
+						<span class="glyphicon glyphicon-music"></span> Playlist</font></a>
+					</li>
+					<li><a href="{% url 'logout' %}?next=/login"><font color="black" size="4px">
+						<span class="glyphicon glyphicon-log-out"></span> Logout</font></a>
+					</li>
+    			</ul>
+  			</div>
+			<div class="head">
+			<div class="row">
+				<div class="col-lg-12">
+					<h3>ARTIST POPULAR SONGS</h3>
+				</div>
+			</div>
+		</div>
+		</nav>
+
+		<br><br>
+        <div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-2">
+				</div>
+				<div class="col-lg-8">
+                    <div class="button-container">
+                        {% for Song in choices %}
+                        <form action="{% url 'player' %}" method="post">
+                        {% csrf_token %}
+        		            <div>
+            		            <button style="margin: 10px 20px; text-align: left;padding-bottom: 30px;background-color: white; border: none;">
+                		            <span style="display:none;"><input type=" submit " name="choose" value="{{ Song.song_id }}"></span>
+                                    <img src="{{ Song.song_image.url }}" style="width:150px; height:150px;"><br><p style="text-align: center; font-size: 15px">{{ Song.song_name }}</p>
+            		            </button>
+        		            </div>
+    		            </form>
+                        {% endfor %}
+                    </div>
+                </div>
+    		    <div class="col-lg-2">
+				</div>
+            </div>
+        </div>
+        <br><br>
+		<div class="footer"><br>&copy; Website Name. All rights Reserved 2018<br><br></div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    	<script src="{% static 'home/bootstrap/js/bootstrap.min.js' %}"></script>
+	</body>
+</html>

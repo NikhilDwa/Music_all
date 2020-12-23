@@ -1,0 +1,99 @@
+{% load static %}
+<html lang="en">
+    <head>
+		<meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <meta name="description" content="Custom Login Form Styling with CSS3" />
+        <meta name="keywords" content="css3, login, form, custom, input, submit, button, html5, placeholder" />
+        <meta name="author" content="Codrops" />
+        <!--  <link rel="shortcut icon" href="../favicon.ico">-->
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+        <link rel="stylesheet" href="{% static 'home/css/styled.css' %}">
+        <script src="js/modernizr.custom.63321.js"></script>
+        <!--[if lte IE 7]><style>.main{display:none;} .support-note .note-ie{display:block;}</style><![endif]-->
+    </head>
+
+    <body>
+        <section class="main">
+            <div class="login-box" style="top:90px;">
+                <div class="lb-header">
+                    <a href="#" class="active" id="login-box-link">Login</a>
+                    <a href="{% url 'signup' %}" id="signup-box-link">Sign Up</a>
+                </div>
+                <div class="social-login">
+                    <a href="#">
+                        <i class="fa fa-facebook fa-lg"></i>
+                            Login with facebook
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-google-plus fa-lg"></i>
+                            Login with Google
+                    </a>
+                </div>
+    			<form action ="" method="post" class="email-login" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="u-form-group">
+						<label><i class="icon-user"></i>Username</label>
+						<input type="text" name="username" placeholder="Username">
+					</div>
+                    <div class="u-form-group">
+						<label><i class="icon-lock"></i>Password</label>
+						<input type="password" name="password" placeholder="Password" class="showpassword">
+                    </div>
+
+                    {% if form.errors %}
+                    <p class=" label label-danger">
+                        Your username and password didn't match.
+                        Please try again.
+                    </p>
+                    {% endif %}
+
+                    <div class="u-form-group">
+                        <input type="submit" value="Login" class="login" />
+                        <input type="hidden" name="next" value="{{ next }}" />
+					</div>
+                    <div class="u-form-group">
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script type="text/javascript">
+              $(function(){
+			     $(".showpassword").each(function(index,input) {
+			         var $input = $(input);
+			         $("<p class='opt'/>").append(
+			             $("<input type='checkbox' class='showpasswordcheckbox' id='showPassword' />").click(function() {
+			                 var change = $(this).is(":checked") ? "text" : "password";
+			                 var rep = $("<input placeholder='Password' type='" + change + "' />")
+			                 .attr("id", $input.attr("id"))
+			                 .attr("name", $input.attr("name"))
+			                 .attr('class', $input.attr('class'))
+			                 .val($input.val())
+			                 .insertBefore($input);
+			                     $input.remove();
+			                     $input = rep;
+			             })
+			         ).append($("<label for='showPassword'/>").text("Show password")).insertAfter($input.parent());
+                    });
+                    $('#showPassword').click(function(){
+					if($("#showPassword").is(":checked")) {
+				        $('.icon-lock').addClass('icon-unlock');
+						$('.icon-unlock').removeClass('icon-lock');
+				    }
+                    else {
+				        $('.icon-unlock').addClass('icon-lock');
+						$('.icon-lock').removeClass('icon-unlock');
+					}
+                    });
+              });
+        </script>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script  src="{% static 'home/js/index.js' %}"></script>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+.navbar-brands {
+  float: left;
+  height: 50px;
+  padding: 15px 15px;
+  font-size: 25px;
+  line-height: 20px;
+  color: black;
+}
+
+.ss {
+  background-color: #7ba6ea;
+  border-color: black;
+}
+
+.pp{
+    padding-top: 15px;
+    padding-right: 20px;
+    }
+
+.jumbotron {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  color: inherit;
+  background-color:#bdd2f5;
+}

@@ -1,0 +1,51 @@
+body{
+	background-color: grey;
+}
+
+
+nav{
+	background-color: rgb(153, 151, 151);
+	width: 640px;
+	padding-bottom: 10px;
+}
+
+#defaultBar{
+	width: 640px;
+	position: relative;
+	background-color: #606060;
+	height: 10px;
+}
+
+#progressBar{
+	position: absolute;
+	height: 10px;
+	background-color: #3498db;
+	width: 0px;
+}
+
+#playButton{
+	background-color: rgb(153, 151, 151);
+	border: none;
+	height: 40px;
+	width: 40px;
+	background-image: url("../../static/home/play.png");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#muteButton{
+	background-color: rgb(153, 151, 151);
+	border: none;
+	height: 40px;
+	width: 40px;
+	background-image: url("../../static/home/sound.png");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#muteButton: active, #playButton:active{
+	position: relative;
+	top: 2px;
+}
+
+

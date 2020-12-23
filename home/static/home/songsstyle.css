@@ -1,0 +1,76 @@
+.na {
+  float: left;
+  height: 50px;
+  padding: 20px 15px;
+  font-size: 35px;
+  line-height: 20px;
+  color: white;
+}
+
+.header{
+	color: white;
+	font-size: 30px;
+	padding-left:  10px;
+	text-align: left;
+	font-family: sans-serif;
+}
+.user{
+	color: white;
+	font-size: 20px;
+	padding-top: 12px;
+	padding-right: 30px;
+	font-family: sans-serif;
+	text-align: right;
+}
+h3{
+	color: Black;
+	font-size: 45px;
+	padding:  5px;
+	margin: 5px;
+	font-family: times;
+	text-align: center;
+
+}
+
+.head {
+ 	background-color:  #a2c0ef ;
+ 	border-color: white;
+}
+
+.navbar-inverse .navbar-text {
+  color: white;
+  font-size: 20px;
+  padding-top: 2px
+}
+
+.footer{
+  background-color: #aad6f3 ;
+	color: black;
+	font-size: 15px;
+	padding:  5px;
+	margin-top: 3px;
+	font-family: sans-serif;
+	text-align: center;
+    bottom: 0;
+    width: 100%;
+
+}
+
+#container {
+   height:100%;
+}
+.artist_img{
+    height : 100%;
+    width: 100%;
+}
+
+
+.button-container form,
+.button-container form div {
+    display: inline;
+}
+
+.button-container button {
+    display: inline;
+    vertical-align: middle;
+}

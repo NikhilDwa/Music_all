@@ -1,0 +1,29 @@
+.header{
+	color: white;
+	font-size: 30px;
+	padding-left:  10px;
+	text-align: left;
+	font-family: sans-serif;
+}
+.user{
+	color: white;
+	font-size: 20px;
+	padding-top: 12px;
+	padding-right: 30px;
+	font-family: sans-serif;
+	text-align: right;
+}
+h3{
+	color: Black;
+	font-size: 45px;
+	padding:  5px;
+	margin: 5px;
+	font-family: times;
+	text-align: center;
+
+}
+
+.head {
+ 	background-color:  #a2c0ef ;
+ 	border-color: white;
+}
