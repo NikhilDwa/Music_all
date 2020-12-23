@@ -1,8 +1,5 @@
 import pandas as pd
 import numpy as np
-import math
-from scipy.spatial.distance import correlation, cosine
-import sklearn.metrics as metrics
 from sklearn.metrics import mean_squared_error
 from sklearn.neighbors import NearestNeighbors
 from sklearn.metrics import pairwise_distances
@@ -73,30 +70,30 @@ def song_pred(input_user_id):
     df2.fillna( 0, inplace = True )
 
     #calculating pearson similarity
-    pearison_sim= 1-pairwise_distances(df2.as_matrix(),metric="cosine")
+    pearison_sim = 1-pairwise_distances(df2.as_matrix(), metric="cosine")
     similarity_matrix=pd.DataFrame(pearison_sim)
-    sim,indi=findksimilarusers(input_user_id,df2)
-    indi=np.delete(indi,0)
-    indi=indi+1
+    sim, indi = findksimilarusers(input_user_id, df2)
+    indi = np.delete(indi, 0)
+    indi = indi+1
     df7 = df2.unstack().reset_index(name='count')
-    df3=pd.Series(name='item')
-    df10=pd.Series(name='prediction')
-    userlist=indi
+    df3 = pd.Series(name='item')
+    df10 = pd.Series(name='prediction')
+    userlist = indi
     for user in userlist:
-        f1=get_listened_songs(input_user_id,user,df7)
-        df3=pd.concat([df3,f1])
-    df3=df3.drop_duplicates()
+        f1 = get_listened_songs(input_user_id, user, df7)
+        df3 = pd.concat([df3, f1])
+    df3 = df3.drop_duplicates()
 
     for item in df3:
-        prediction=predict_userbased(input_user_id,item,df2)
-        df10=df10.append(pd.Series(prediction))
+        prediction = predict_userbased(input_user_id, item, df2)
+        df10 = df10.append(pd.Series(prediction))
 
-    df3=df3.reset_index(drop=True)
-    df10=df10.reset_index(drop=True)
-    dict={'item':df3,'prediction':df10}
+    df3 = df3.reset_index(drop=True)
+    df10 = df10.reset_index(drop=True)
+    dict = {'item': df3, 'prediction': df10}
 
-    dframe=pd.DataFrame(dict)
-    dframe=dframe.sort_values(by='prediction',ascending=False)
+    dframe = pd.DataFrame(dict)
+    dframe = dframe.sort_values(by='prediction',ascending=False)
 
     org_actual = pd.Series(name='org_actual')
     org_predicted = pd.Series(name='org_predicted')
@@ -105,11 +102,6 @@ def song_pred(input_user_id):
         nikhil, esor = get_predictions(item,df7,df2)
         org_actual = org_actual.append(nikhil)
         org_predicted = org_predicted.append(esor)
-
-    mse=mean_squared_error(org_actual,org_predicted)
-    #print(mse**0.5)
-
-    #print(dframe)
     return (dframe['item'][:3])
 
 
