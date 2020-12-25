@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9a9ec48-7f7d-466b-a50c-b3570974ac67" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Music_all.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Music_all.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/user_cosine.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/user_cosine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/home/playlist_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/home/playlist_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/home/playlistsong_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/home/playlistsong_form.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,6 +126,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -257,11 +257,11 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.item_collab" />
+      <item itemvalue="Python.item_cosine" />
       <item itemvalue="Python.popularity_reco" />
       <item itemvalue="Python.user_collab" />
-      <item itemvalue="Python.item_collab" />
       <item itemvalue="Python.user_cosine" />
-      <item itemvalue="Python.item_cosine" />
     </list>
     <recent_temporary>
       <list>
