@@ -83,7 +83,7 @@
             </form>
         {% endfor %}
         </div>
-<div style="margin:-3.8% 25px -30px 74%"><h2>Songs that are similar</h2></div>
+        <div style="margin:-3.8% 25px -30px 74%"><h2>Songs that are similar</h2></div>
         <div style="width:24%;height:430px;padding:10px;margin:20px 20px 20px 3%;border: 1px solid rgba(54, 48, 48, 0.5);float:left;overflow-y: scroll;">
         {% for Song in it %}
             <form action="#" method="post">
@@ -98,14 +98,15 @@
                     </button>
         		</div>
             </form>
-        {% endfor %}
+            {% endfor %}
+        </div>
 
         <div class="musicPlayer" style="height:100px;position:fixed;bottom:0;left:0;right:0;z-index:100;">
-            <div style='background:url("{% static 'home/playerBackground.jpg' %}");margin:auto;opacity:0.92;border-top:1px solid rgba(255,0,0,0);'>
+            <div style='background:url("{% static "home\playerBackground.jpg" %}");margin:auto;opacity:0.92;border-top:1px solid rgba(255,0,0,0);'>
                 <div style="background-color: rgba(0,0,0,0.8);"> <br>
                     <div style='float:left;width:25%;overflow:hidden;'>
                         <marquee>
-                        <b id='songPlayin' style='text-align:center;color: #a6a6a6' >{{ play.song_name }}</b>
+                            <b id='songPlayin' style='text-align:center;color: #a6a6a6' >{{ play.song_name }}</b>
                         </marquee>
                     </div>
                     <div style='margin-left:43%;float:clear;'>
